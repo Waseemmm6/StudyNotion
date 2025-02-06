@@ -26,7 +26,7 @@ database.connect();
 app.use(express.json());
 app.use(cookieParser());
 
-const cors = require("cors");
+
 
 const allowedOrigins = [
   "https://studynotion-frontend-oxo204z8s-waseems-projects-25897392.vercel.app",
