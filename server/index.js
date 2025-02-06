@@ -26,14 +26,26 @@ database.connect();
 app.use(express.json());
 app.use(cookieParser());
 
+const cors = require("cors");
+
+const allowedOrigins = [
+  "https://studynotion-frontend-oxo204z8s-waseems-projects-25897392.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:3000", // Allow frontend
-    credentials: true, // Allow cookies
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
   })
 );
+
 
   
 app.use(
