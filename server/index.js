@@ -23,25 +23,16 @@ const PORT = process.env.PORT || 4000;
 database.connect();
 
 // Allowed origins for CORS
-const allowedOrigins = [
-  "https://studynotion-frontend-phi-red.vercel.app",
-  "https://studynotion-frontend-oxo204z8s-waseems-projects-25897392.vercel.app",
-];
 
 // CORS Middleware (Place it before other middlewares)
 app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true, // Important for cookies/auth
-  })
-);
+	cors({
+	  origin: "*", // Allow all origins
+	  methods: ["GET", "POST", "PUT", "DELETE"],
+	  credentials: true,
+	})
+  );
+  
 
 // Middleware
 app.use(express.json());
