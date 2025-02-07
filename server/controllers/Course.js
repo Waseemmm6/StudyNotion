@@ -94,6 +94,7 @@ exports.createCourse = async (req, res) => {
 
     const thumbnailImage = await uploadImageToCloudinary(thumbnail, process.env.FOLDER_NAME);
     console.log(thumbnailImage);
+    console.log("Received Files:", req.files);
 
     const newCourse = await Course.create({
       courseName,
